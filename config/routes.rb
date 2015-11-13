@@ -53,4 +53,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '/posts/unverified', to: 'posts#unverified'
+  post '/posts/:id/verify', to: 'posts#verify', as: :verify_post
+  resources :posts
+
 end
