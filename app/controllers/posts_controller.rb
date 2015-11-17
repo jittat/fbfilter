@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(url: params[:post][:url])
     @post.verified = false
+    @post.ignored = false
 
     begin
       if @post.save
@@ -25,7 +26,11 @@ class PostsController < ApplicationController
   end
 
   def unverified
-    @posts = Post.where verified: false
+    @posts = Post.where({ verified: false, ignored: false })
+  end
+  
+  def verified
+    @posts = Post.where({ verified: true, ignored: false })
   end
   
   def show
@@ -37,5 +42,20 @@ class PostsController < ApplicationController
     @post.verified = true
     @post.save
     redirect_to posts_unverified_path
+  end
+
+  def ignore
+    @post = Post.find(params[:id])
+    verified = @post.verified
+
+    @post.ignored = true
+    @post.verified = false
+    @post.save
+
+    if verified
+      redirect_to posts_verified_path
+    else
+      redirect_to posts_unverified_path
+    end      
   end
 end

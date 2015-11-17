@@ -12,13 +12,12 @@
   [<a href="<%= posts_verified_path %>">verified</a>]
 </div>
 
-<h1>รายการโพสที่รอการพิจารณา (ยังไม่แสดงบนหน้าจอ)</h1>
+<h1>รายการโพสที่แสดงบนหน้าจอ</h1>
 <hr>
 <ul>
   <% @posts.each do |p| %>
     <li>
       <%= p.url %> <a class="post-preview-links" data-id="<%= p.id %>" href="#">view</a>
-      <form style="display: inline-block;" action="<%= verify_post_path p.id %>" method="post"><input type="submit" value="Verify"></form>
       <form style="display: inline-block;" action="<%= ignore_post_path p.id %>" method="post"><input type="submit" value="Ignore"></form>
     </li>
   <% end %>

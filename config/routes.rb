@@ -55,7 +55,9 @@ Rails.application.routes.draw do
   #   end
 
   get '/posts/unverified', to: 'posts#unverified'
+  get '/posts/verified', to: 'posts#verified'
   post '/posts/:id/verify', to: 'posts#verify', as: :verify_post
+  post '/posts/:id/ignore', to: 'posts#ignore', as: :ignore_post
   resources :posts
 
 end

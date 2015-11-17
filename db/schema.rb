@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113075203) do
+ActiveRecord::Schema.define(version: 20151117102739) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "url"
     t.boolean  "verified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "ignored"
   end
 
   add_index "posts", ["url"], name: "index_posts_on_url", unique: true
