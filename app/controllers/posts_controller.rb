@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.where verified: true
+    @posts.shuffle
   end
 
   def unverified
